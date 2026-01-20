@@ -1,3 +1,3 @@
-module webhade.com/m
+module webhade.com/kasir-api
 
 go 1.25.6
