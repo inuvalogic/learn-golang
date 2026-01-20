@@ -83,7 +83,9 @@ func deleteProduk(w http.ResponseWriter, r *http.Request, idStr string) {
         if p.ID == id {
             produk = append(produk[:i], produk[i+1:]...)
             w.Header().Set("Content-Type", "application/json")
-            json.NewEncoder(w).Encode(produk)
+            json.NewEncoder(w).Encode(map[string]string{
+                "message": "product deleted",
+            })
             return
         }
     }
