@@ -33,7 +33,7 @@ var categories = []Category{
 var products = []Product{
     {ID: 1, Name: "Ribs Eye Steak", Price: 135000, Stock: 100, Category: 1},
     {ID: 2, Name: "Ice Lemon", Price: 25000, Stock: 50, Category: 2},
-    {ID: 3, Name: "Spicy Lobster", Price: 180000, Stock: 10, Category: 1},
+    {ID: 3, Name: "Spicy Lobster", Price: 180800, Stock: 10, Category: 1},
 }
 
 /*
@@ -296,9 +296,9 @@ func deleteProduct(w http.ResponseWriter, idStr string) {
  */
 func main() {
 
-    // GET localhost:8000/api/categories/{id}
-    // PUT localhost:8000/api/categories/{id}
-    // DELETE localhost:8000/api/categories/{id}
+    // GET localhost:8080/api/categories/{id}
+    // PUT localhost:8080/api/categories/{id}
+    // DELETE localhost:8080/api/categories/{id}
     http.HandleFunc("/api/categories/", func(w http.ResponseWriter, r *http.Request) {
         idStr := strings.TrimPrefix(r.URL.Path, "/api/categories/")
 
@@ -318,8 +318,8 @@ func main() {
         }
     })
 
-    // GET localhost:8000/api/categories
-    // POST localhost:8000/api/categories
+    // GET localhost:8080/api/categories
+    // POST localhost:8080/api/categories
     http.HandleFunc("/api/categories", func(w http.ResponseWriter, r *http.Request) {
         switch r.Method {
             case "GET":
@@ -334,9 +334,9 @@ func main() {
         }
     })
 
-    // GET localhost:8000/api/products/{id}
-    // PUT localhost:8000/api/products/{id}
-    // DELETE localhost:8000/api/products/{id}
+    // GET localhost:8080/api/products/{id}
+    // PUT localhost:8080/api/products/{id}
+    // DELETE localhost:8080/api/products/{id}
     http.HandleFunc("/api/products/", func(w http.ResponseWriter, r *http.Request) {
         idStr := strings.TrimPrefix(r.URL.Path, "/api/products/")
 
@@ -356,8 +356,8 @@ func main() {
         }
     })
 
-    // GET localhost:8000/api/products
-    // POST localhost:8000/api/products
+    // GET localhost:8080/api/products
+    // POST localhost:8080/api/products
     http.HandleFunc("/api/products", func(w http.ResponseWriter, r *http.Request) {
         switch r.Method {
             case "GET":
@@ -372,14 +372,14 @@ func main() {
         }
     })
 
-    // GET localhost:8000/health
+    // GET localhost:8080/health
     http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
         handleResponse(http.StatusOK, w, nil, "API running")
     })
 
-    // Running Server di port 8000
-    fmt.Println("server running di localhost:8000")
-    err := http.ListenAndServe(":8000", nil)
+    // Running Server di port 8080
+    fmt.Println("server running di localhost:8080")
+    err := http.ListenAndServe(":8080", nil)
     if err != nil {
         fmt.Println("gagal running server")
     }
