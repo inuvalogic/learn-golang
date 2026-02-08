@@ -69,6 +69,13 @@ func main() {
 
     http.HandleFunc("/api/checkout", transactionHandler.HandleCheckout) // POST
 
+    reportRepo := repositories.NewReportRepository(db)
+    reportService := services.NewReportService(reportRepo)
+    reportHandler := handlers.NewReportHandler(reportService)
+
+    http.HandleFunc("/api/report/hari-ini", reportHandler.HandleTodayReport)
+    http.HandleFunc("/api/report", reportHandler.HandleGetReport)
+
     // GET localhost:8080/health
     http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
         libs.HandleResponse(http.StatusOK, w, nil, "API running")
