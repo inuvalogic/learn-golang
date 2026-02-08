@@ -62,6 +62,13 @@ func main() {
     http.HandleFunc("/api/products", productHandler.HandleProducts)
     http.HandleFunc("/api/products/", productHandler.HandleProductByID)
 
+    // Transaction
+    transactionRepo := repositories.NewTransactionRepository(db)
+    transactionService := services.NewTransactionService(transactionRepo)
+    transactionHandler := handlers.NewTransactionHandler(transactionService)
+
+    http.HandleFunc("/api/checkout", transactionHandler.HandleCheckout) // POST
+
     // GET localhost:8080/health
     http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
         libs.HandleResponse(http.StatusOK, w, nil, "API running")
